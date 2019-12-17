@@ -1,6 +1,7 @@
 // Test away!
 import React from 'react';
-import { render, fireEvent, getAllByText } from '@testing-library/react';
+import { render, fireEvent, getByText } from '@testing-library/react';
+import Dashboard from '../dashboard/Dashboard';
 import Controls from './Controls';
 import expectExport from 'expect';
 {/* <div className="controls panel">
@@ -23,10 +24,11 @@ it('Controls button  changes from open to close', () => {
 
 test('buttons text changes to reflect the state the door will be in if clicked', () => {
   // Arrange
-  const { findByText } = render(<Controls />);
+  const { getByText } = render(<Dashboard><Controls /></Dashboard>);
   // Act - getting the node by text
-  findByText(/toggle-/i);
-  findByText(/open gate/i);
+  const gateButton = getByText(/close/i);
+  fireEvent.click(gateButton)
+  getByText(/open gate/i);
   // Assertion is if ^^^ is truthy
 });
 test('the closed toggle button is disabled if the gate is locked', () => {
