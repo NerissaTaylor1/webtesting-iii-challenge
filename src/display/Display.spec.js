@@ -26,3 +26,7 @@ test('  div locked or closed use the red-led class', () => {
     const { container } = render(<Display />)
     expect('red-led').toMatch('red-led')
 })
+
+test('when unlocked or open use the green-led class', () => {
+    expect('green-led').toMatch('green-led')
+})
