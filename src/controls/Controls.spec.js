@@ -21,7 +21,7 @@ it('Controls button  changes from open to close', () => {
   findByText(/unlock gate/i);
 })
 
-test('find toggledLocked', () => {
+test('buttons text changes to reflect the state the door will be in if clicked', () => {
   // Arrange
   const { findByText } = render(<Controls />);
   // Act - getting the node by text
@@ -34,8 +34,10 @@ test('the closed toggle button is disabled if the gate is locked', () => {
   const disableButton = findByText(/disable/i)
   expect(findByText(/locked/i)).not.toBeFalsy()
 });
-//   const gate = getByText(/locked/i)
-//   fireEvent.click(gate);
-//   findByText(/unlock gate/i)
 
-// })
+test('the locked toggle button is disabled if the gate is open', () => {
+  const { findByText } = render(<Controls closed={true} />)
+  const disableButton = findByText(/disable/i)
+  expect(findByText(/open/i)).toBeTruthy()
+
+});
